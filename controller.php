@@ -2,6 +2,7 @@
 
 namespace Concrete\Package\CacheBuster;
 
+use A3020\CacheBuster\Console\Command\CacheBuster;
 use A3020\CacheBuster\Installer;
 use Concrete\Core\Package\Package;
 use Concrete\Core\Support\Facade\Package as PackageFacade;
@@ -11,7 +12,7 @@ final class Controller extends Package
 {
     protected $pkgHandle = 'cache_buster';
     protected $appVersionRequired = '8.3.1';
-    protected $pkgVersion = '1.0.4';
+    protected $pkgVersion = '1.1.0';
     protected $pkgAutoloaderRegistries = [
         'src/CacheBuster' => '\A3020\CacheBuster',
     ];
@@ -28,6 +29,11 @@ final class Controller extends Package
 
     public function on_start()
     {
+        if ($this->app->isRunThroughCommandLineInterface()) {
+            $console = $this->app->make('console');
+            $console->add(new CacheBuster());
+        }
+
         /** @var Provider $provider */
         $provider = $this->app->make(Provider::class);
         $provider->register();
