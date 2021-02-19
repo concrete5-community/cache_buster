@@ -1,0 +1,23 @@
+1.0.2
+- Add logging option to see how long it took to add the cache busters to the HTML output.
+
+1.0.1
+- Fix regex when multiple script tags are on the same line.
+
+1.0.0
+- Add date + time when cache was busted for the last time.
+
+0.9.2
+- Remove the 'hash' field from the Settings page.
+- Add tooltip to 'bust' button.
+- Simplify bust success message.
+- Fix typo in 'Enable in dashboard area' tooltip.
+- Extend tooltip 'Enable Cache Buster'.
+
+0.9.1
+- Use time() instead of uniqid() for the hash.
+- Add placeholders to include/exclude textareas.
+- Improve translations.
+
+0.9.0
+- Initial submission.
