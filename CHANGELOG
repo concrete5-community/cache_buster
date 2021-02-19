@@ -1,3 +1,6 @@
+1.0.3
+- Remove unneeded multiline regex modifier.
+
 1.0.2
 - Add logging option to see how long it took to add the cache busters to the HTML output.
 

@@ -29,7 +29,7 @@ class PathReplacer
     {
         // Change JavaScript paths.
         $pageContent = preg_replace_callback(
-            '/<script(?:.*?)src=[\'"](.*?)[\'"](?:.*?)>/im',
+            '/<script(?:.*?)src=[\'"](.*?)[\'"](?:.*?)>/i',
             function($matches) {
                 return $this->js->transformTag($matches[0], $matches[1]);
             },
@@ -38,7 +38,7 @@ class PathReplacer
 
         // Change CSS paths.
         return preg_replace_callback(
-            '/<link(?:.*?)href=[\'"](.*?)[\'"](?:.*?)>/im',
+            '/<link(?:.*?)href=[\'"](.*?)[\'"](?:.*?)>/i',
             function($matches) {
                 return $this->css->transformTag($matches[0], $matches[1]);
             },
