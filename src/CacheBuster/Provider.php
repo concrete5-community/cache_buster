@@ -7,8 +7,8 @@ use A3020\CacheBuster\Listener\PageOutput;
 use Concrete\Core\Application\ApplicationAwareInterface;
 use Concrete\Core\Application\ApplicationAwareTrait;
 use Concrete\Core\Config\Repository\Repository;
-use Concrete\Core\Logging\Logger;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 class Provider implements ApplicationAwareInterface
 {
@@ -20,11 +20,11 @@ class Provider implements ApplicationAwareInterface
     protected $config;
 
     /**
-     * @var Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
-    public function __construct(Logger $logger)
+    public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
@@ -34,7 +34,7 @@ class Provider implements ApplicationAwareInterface
         try {
             $this->listeners();
         } catch (Exception $e) {
-            $this->logger->addDebug($e->getMessage());
+            $this->logger->debug($e->getMessage());
         }
     }
 

@@ -4,8 +4,8 @@ namespace A3020\CacheBuster\Listener;
 
 use A3020\CacheBuster\HashGenerator;
 use Concrete\Core\Config\Repository\Repository;
-use Concrete\Core\Logging\Logger;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 class CacheBust
 {
@@ -20,11 +20,11 @@ class CacheBust
     private $hashGenerator;
 
     /**
-     * @var Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
-    public function __construct(Repository $config, HashGenerator $hashGenerator, Logger $logger)
+    public function __construct(Repository $config, HashGenerator $hashGenerator, LoggerInterface $logger)
     {
         $this->config = $config;
         $this->hashGenerator = $hashGenerator;
@@ -38,7 +38,7 @@ class CacheBust
                $this->hashGenerator->generate()
            );
         } catch (Exception $e) {
-            $this->logger->addDebug($e->getMessage());
+            $this->logger->debug($e->getMessage());
         }
     }
 }

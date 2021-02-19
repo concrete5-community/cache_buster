@@ -4,9 +4,9 @@ namespace A3020\CacheBuster\Listener;
 
 use A3020\CacheBuster\Transformer\PathReplacer;
 use Concrete\Core\Config\Repository\Repository;
-use Concrete\Core\Logging\Logger;
 use Concrete\Core\Page\Page;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 class PageOutput
 {
@@ -16,7 +16,7 @@ class PageOutput
     private $config;
 
     /**
-     * @var Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -25,7 +25,7 @@ class PageOutput
      */
     private $pathReplacer;
 
-    public function __construct(Repository $config, Logger $logger, PathReplacer $pathReplacer)
+    public function __construct(Repository $config, LoggerInterface $logger, PathReplacer $pathReplacer)
     {
         $this->config = $config;
         $this->logger = $logger;
@@ -62,13 +62,13 @@ class PageOutput
 
             if ($this->config->get('cache_buster::settings.logging_enabled', false) === true) {
                 $endTime = microtime(true);
-                $this->logger->addInfo(t(/*i18n: name of the addon + timestamp*/'%s finished and took %s milliseconds.',
+                $this->logger->info(t(/*i18n: name of the addon + timestamp*/'%s finished and took %s milliseconds.',
                     t('Cache Buster'),
                     round(($endTime - $startTime) *1000, 2) // milliseconds
                 ));
             }
         } catch (Exception $e) {
-            $this->logger->addDebug($e->getMessage());
+            $this->logger->debug($e->getMessage());
         }
     }
 }

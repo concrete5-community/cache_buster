@@ -1,0 +1,11 @@
+{
+    "require-dev": {
+        "phpunit/phpunit": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "A3020\\CacheBuster\\": "src\\CacheBuster",
+            "A3020\\CacheBuster\\Tests\\": "tests"
+        }
+    }
+}
