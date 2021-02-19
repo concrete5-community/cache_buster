@@ -11,7 +11,7 @@ final class Controller extends Package
 {
     protected $pkgHandle = 'cache_buster';
     protected $appVersionRequired = '8.3.1';
-    protected $pkgVersion = '1.0.3';
+    protected $pkgVersion = '1.0.4';
     protected $pkgAutoloaderRegistries = [
         'src/CacheBuster' => '\A3020\CacheBuster',
     ];
